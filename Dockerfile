@@ -1,4 +1,4 @@
-FROM alpine:3.12-glibc
+FROM frolvlad/alpine-glibc:latest
 # Define software versions.
 ARG TMM_VERSION=4.2.3
 
