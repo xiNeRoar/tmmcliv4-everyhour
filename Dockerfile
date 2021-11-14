@@ -53,5 +53,5 @@ LABEL \
       org.label-schema.name="tinymediamanagerCMD" \
       org.label-schema.description="Docker container for TinyMediaManager Command line cron scheduled" \
       org.label-schema.version="unknown" \
-      org.label-schema.vcs-url="https://github.com/coolasice1999/crontest" \
+      org.label-schema.vcs-url="https://github.com/coolasice1999/tmmcliv4" \
       org.label-schema.schema-version="1.0"
