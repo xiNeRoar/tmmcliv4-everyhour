@@ -1,10 +1,10 @@
 FROM alpine:3.12
 # Define software versions.
-ARG TMM_VERSION=3.1.16.1
+ARG TMM_VERSION=4.2.3
 
 # Define software download URLs.
-ARG TMM_URL=https://release.tinymediamanager.org/v3/dist/tmm_${TMM_VERSION}_linux.tar.gz
-
+ARG TMM_URL=https://release.tinymediamanager.org/v4/dist/tmm_${TMM_VERSION}_linux-amd64.tar.gz
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/jre/bin
 # Define working directory.
 WORKDIR /tmp
 
@@ -28,6 +28,14 @@ RUN \
         libmediainfo \
         bash \
         gettext
+
+# Fix Java Segmentation Fault
+RUN wget "https://www.archlinux.org/packages/core/x86_64/zlib/download" -O /tmp/libz.tar.xz \
+    && mkdir -p /tmp/libz \
+    && tar -xf /tmp/libz.tar.xz -C /tmp/libz \
+    && cp /tmp/libz/usr/lib/libz.so.1.2.11 /usr/glibc-compat/lib \
+    && /usr/glibc-compat/sbin/ldconfig \
+    && rm -rf /tmp/libz /tmp/libz.tar.xz
 
 # Add files.
 COPY rootfs/ /
